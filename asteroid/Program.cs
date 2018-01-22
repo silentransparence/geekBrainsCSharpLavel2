@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace asteroid
 {
@@ -12,6 +11,7 @@ namespace asteroid
             form.Height = 600;
             Game.Init(form);
             form.Show();
+            Game.Load();
             Game.Draw();
             Application.Run(form);
         }
