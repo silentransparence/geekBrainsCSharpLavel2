@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asteroid", "asteroid\asteroid.csproj", "{682CE491-92BB-4CEE-9734-CF495BA138A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfSimple", "WpfSimple\WpfSimple.csproj", "{E453175D-75F9-4C45-BECF-EC0420651E29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{682CE491-92BB-4CEE-9734-CF495BA138A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{682CE491-92BB-4CEE-9734-CF495BA138A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{682CE491-92BB-4CEE-9734-CF495BA138A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E453175D-75F9-4C45-BECF-EC0420651E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E453175D-75F9-4C45-BECF-EC0420651E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E453175D-75F9-4C45-BECF-EC0420651E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E453175D-75F9-4C45-BECF-EC0420651E29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,6 +9,7 @@ namespace asteroid
         static BaseObject[] objs;
         static Bullet bullet;
         static Asteroid[] asteroids;
+        static Ship ship = new Ship(new Point(10, 400), new Point(5, 5), new Size(10, 10));
 
         private static BufferedGraphicsContext context;
         public static BufferedGraphics Buffer;
@@ -16,6 +17,7 @@ namespace asteroid
 
         public static int Width { get; set; }
         public static int Height { get; set; }
+        static Timer timer = new Timer();
 
         static Game()
         {
@@ -30,10 +32,18 @@ namespace asteroid
             Height = form.Height;
             Buffer = context.Allocate(g, new Rectangle(0, 0, Width, Height));
             Load();
-            Timer timer = new Timer {Interval = 100};
-            timer.Start();
-
+            timer.Interval = 100;
             timer.Tick += Timer_Tick;
+            timer.Start();
+            form.KeyDown += Form_KeyDown;
+            Ship.MessageDie += Finish;
+        }
+
+        private static void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey) bullet = new Bullet(new Point(ship.Rect.X + 10, ship.Rect.Y + 4), new Point(4, 0), new Size(4, 1));
+            if (e.KeyCode == Keys.Up) ship.Up();
+            if (e.KeyCode == Keys.Down) ship.Down();
         }
 
         public static void Draw()
@@ -46,6 +56,9 @@ namespace asteroid
             foreach (Asteroid a in asteroids)
                 if (a != null) a.Draw();
             if (bullet != null) bullet.Draw();
+
+            ship.Draw();
+            Buffer.Graphics.DrawString("Energy:" + ship.Energy, SystemFonts.DefaultFont, Brushes.White, 0, 0);
 
             Buffer.Render();
         }
@@ -66,6 +79,12 @@ namespace asteroid
                         asteroids[i] = null;
                         bullet = null;
                         continue;
+                    }
+                    if (ship.Collision(asteroids[i]))
+                    {
+                        ship.EnergyLow(rnd.Next(1, 10));
+                        System.Media.SystemSounds.Asterisk.Play();
+                        if (ship.Energy <= 0) ship.Die();
                     }
                 }
             }
@@ -93,6 +112,13 @@ namespace asteroid
         {
             Draw();
             Update();
+        }
+
+        static public void Finish()
+        {
+            timer.Stop();
+            Buffer.Graphics.DrawString("Game over", new Font(FontFamily.GenericSansSerif, 60, FontStyle.Underline), Brushes.White, 200, 100);
+            Buffer.Render();
         }
     }
 }

@@ -10,13 +10,16 @@ namespace asteroid
     class Asteroid : BaseObject
     {
 
+        Image img = Image.FromFile(@"Image\asteroid.png");
+
         public Asteroid(Point pos, Point dir, Size size) : base(pos, dir, size)
         {
         }
 
         public override void Draw()
         {
-            Game.Buffer.Graphics.FillEllipse(Brushes.Wheat, Pos.X, Pos.Y, Size.Width, Size.Height);
+            //Game.Buffer.Graphics.FillEllipse(Brushes.Wheat, Pos.X, Pos.Y, Size.Width, Size.Height);
+            Game.Buffer.Graphics.DrawImage(img, Pos);
         }
 
         public override void Update()
